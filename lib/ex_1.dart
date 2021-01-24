@@ -23,97 +23,121 @@ class _Ex1State extends State<Ex1> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      body: Center(
+      body: InkWell(
+        splashColor: Colors.transparent,
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 16),
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-          decoration: BoxDecoration(
-              color: Colors.black12, borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+          width: double.infinity,
+          height: double.infinity,
+          child: Center(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 8),
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 32),
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    flex: 3,
-                    child: TextField(
-                      onTap: () {
-                        setState(() {
-                          tapCInput = true;
-                          _textController.clear();
-                          currValue = null;
-                        });
-                      },
-                      controller: !tapCInput ? _textController : null,
-                      decoration: InputDecoration(
-                        hintText: "Enter number",
-                        hintStyle: TextStyle(fontSize: 14),
-                        suffixIcon: Container(
-                          width: 15,
-                          height: 15,
-                          child: Center(
-                            child: Text("°C"),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: TextField(
+                          onTap: () {
+                            setState(() {
+                              tapCInput = true;
+                              _textController.clear();
+                              currValue = null;
+                            });
+                          },
+                          controller: !tapCInput ? _textController : null,
+                          decoration: InputDecoration(
+                            hintText: "Enter number",
+                            hintStyle: TextStyle(fontSize: 12),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 16),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50.0)),
+                              borderSide: BorderSide(color: Colors.teal),
+                            ),
+                            suffixIcon: Container(
+                              width: 15,
+                              height: 15,
+                              child: Center(
+                                child: Text("°C"),
+                              ),
+                            ),
                           ),
+                          onChanged: (str) {
+                            currValue = int.parse(str);
+                          },
+                          keyboardType: TextInputType.number,
                         ),
                       ),
-                      onChanged: (str) {
-                        currValue = int.parse(str);
-                      },
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
-                  Expanded(
-                    child: Icon(Icons.autorenew_outlined),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: TextField(
-                      onTap: () {
-                        setState(() {
-                          tapCInput = false;
-                          _textController.clear();
-                          currValue = null;
-                        });
-                      },
-                      controller: tapCInput ? _textController : null,
-                      decoration: InputDecoration(
-                        hintText: "Enter number",
-                        hintStyle: TextStyle(fontSize: 14),
-                        // suffixText: "°F",
-                        suffixIcon: Container(
-                          width: 15,
-                          height: 15,
-                          child: Center(
-                            child: Text("°F"),
+                      Expanded(
+                        child: Icon(Icons.autorenew_outlined),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: TextField(
+                          onTap: () {
+                            setState(() {
+                              tapCInput = false;
+                              _textController.clear();
+                              currValue = null;
+                            });
+                          },
+                          controller: tapCInput ? _textController : null,
+                          decoration: InputDecoration(
+                            hintText: "Enter number",
+                            hintStyle: TextStyle(fontSize: 12),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 16),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50.0)),
+                              borderSide: BorderSide(color: Colors.teal),
+                            ),
+                            suffixIcon: Container(
+                              width: 15,
+                              height: 15,
+                              child: Center(
+                                child: Text("°F"),
+                              ),
+                            ),
                           ),
+                          onChanged: (str) {
+                            currValue = int.parse(str);
+                          },
+                          keyboardType: TextInputType.number,
                         ),
                       ),
-                      onChanged: (str) {
-                        currValue = int.parse(str);
-                      },
-                      keyboardType: TextInputType.number,
-                    ),
+                    ],
                   ),
+                  SizedBox(height: 24),
+                  FlatButton(
+                    color: Colors.lightBlue,
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      // exchange C to F
+                      if (currValue != null && tapCInput) {
+                        final fValue = Utils.exchangeC_2_F(currValue);
+                        _textController.text = fValue.toString();
+                      } else if (currValue != null && !tapCInput) {
+                        final cValue = Utils.exchangeF_2_C(currValue);
+                        _textController.text = cValue.toString();
+                      }
+                    },
+                    child: Text("Convert"),
+                  )
                 ],
               ),
-              SizedBox(height: 24),
-              FlatButton(
-                color: Colors.lightBlue,
-                onPressed: () {
-                  FocusScope.of(context).unfocus();
-                  // exchange C to F
-                  if (currValue != null && tapCInput) {
-                    final fValue = Utils.exchangeC_2_F(currValue);
-                    _textController.text = fValue.toString();
-                  } else if (currValue != null && !tapCInput) {
-                    final cValue = Utils.exchangeF_2_C(currValue);
-                    _textController.text = cValue.toString();
-                  }
-                },
-                child: Text("Convert"),
-              )
-            ],
+            ),
           ),
         ),
       ),
