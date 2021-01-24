@@ -57,7 +57,8 @@ class _Ex1State extends State<Ex1> {
                           controller: !tapCInput ? _textController : null,
                           decoration: InputDecoration(
                             hintText: "Enter number",
-                            hintStyle: TextStyle(fontSize: 12),
+                            hintStyle: TextStyle(
+                                fontSize: 12, color: Colors.orangeAccent),
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 16),
                             border: OutlineInputBorder(
@@ -69,7 +70,10 @@ class _Ex1State extends State<Ex1> {
                               width: 15,
                               height: 15,
                               child: Center(
-                                child: Text("°C"),
+                                child: Text(
+                                  "°C",
+                                  style: TextStyle(color: Colors.orangeAccent),
+                                ),
                               ),
                             ),
                           ),
@@ -95,7 +99,8 @@ class _Ex1State extends State<Ex1> {
                           controller: tapCInput ? _textController : null,
                           decoration: InputDecoration(
                             hintText: "Enter number",
-                            hintStyle: TextStyle(fontSize: 12),
+                            hintStyle: TextStyle(
+                                fontSize: 12, color: Colors.orangeAccent),
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 16),
                             border: OutlineInputBorder(
@@ -107,7 +112,10 @@ class _Ex1State extends State<Ex1> {
                               width: 15,
                               height: 15,
                               child: Center(
-                                child: Text("°F"),
+                                child: Text(
+                                  "°F",
+                                  style: TextStyle(color: Colors.orangeAccent),
+                                ),
                               ),
                             ),
                           ),

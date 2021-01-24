@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:layout_design/ex_1.dart';
 
 void main() {
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       //     child: Icon(Icons.play_arrow_sharp),
       //   ),
       // ),
-      home: Ex1(),
+      home: Ex1(), // for example 1
+      // home: Ex2(), for example 2
     );
   }
 }
