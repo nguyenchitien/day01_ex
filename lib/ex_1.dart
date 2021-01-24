@@ -26,7 +26,7 @@ class _Ex1State extends State<Ex1> {
       body: Center(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 16),
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
           decoration: BoxDecoration(
               color: Colors.black12, borderRadius: BorderRadius.circular(10)),
           child: Column(
@@ -36,7 +36,7 @@ class _Ex1State extends State<Ex1> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: TextField(
                       onTap: () {
                         setState(() {
@@ -49,8 +49,12 @@ class _Ex1State extends State<Ex1> {
                       decoration: InputDecoration(
                         hintText: "Enter number",
                         hintStyle: TextStyle(fontSize: 14),
-                        suffix: Text(
-                          "°C",
+                        suffixIcon: Container(
+                          width: 15,
+                          height: 15,
+                          child: Center(
+                            child: Text("°C"),
+                          ),
                         ),
                       ),
                       onChanged: (str) {
@@ -63,7 +67,7 @@ class _Ex1State extends State<Ex1> {
                     child: Icon(Icons.autorenew_outlined),
                   ),
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: TextField(
                       onTap: () {
                         setState(() {
@@ -76,7 +80,14 @@ class _Ex1State extends State<Ex1> {
                       decoration: InputDecoration(
                         hintText: "Enter number",
                         hintStyle: TextStyle(fontSize: 14),
-                        suffix: Text("°F"),
+                        // suffixText: "°F",
+                        suffixIcon: Container(
+                          width: 15,
+                          height: 15,
+                          child: Center(
+                            child: Text("°F"),
+                          ),
+                        ),
                       ),
                       onChanged: (str) {
                         currValue = int.parse(str);
